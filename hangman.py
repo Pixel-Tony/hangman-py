@@ -1,7 +1,7 @@
 # Problem Set 2, hangman.py
 # Name: 
-# Collaborators:
-# Time spent:
+# Collaborators: Peshkov A.
+# Time spent: 2hrs
 # Hangman Game
 # -----------------------------------
 # Helper code
@@ -10,8 +10,6 @@
 # (so be sure to read the docstrings!)
 import random
 import string
-
-from numpy import mat
 
 WORDLIST_FILENAME = "words.txt"
 
@@ -190,5 +188,10 @@ if __name__ == "__main__":
     print('1 - classic hangman')
     print('2 - hangman with hints')
     secret_word = choose_word(wordlist)
-    print('-'*30);hangman(secret_word) if int(input()) == 1 else print('-'*30);hangman_with_hints(secret_word)
-    
+    print('-'*30)
+    choice = int(input())
+    print('-'*30)
+    if choice == 1:
+        hangman(secret_word) 
+    else:
+        hangman_with_hints(secret_word)
