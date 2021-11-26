@@ -1,25 +1,9 @@
-# Problem Set 2, hangman.py
-# Name: 
-# Collaborators: Peshkov A.
-# Time spent: 2hrs
-# Hangman Game
-# -----------------------------------
-# Helper code
-# You don't need to understand this helper code,
-# but you will have to know how to use the functions
-# (so be sure to read the docstrings!)
 import random
 import string
 
 WORDLIST_FILENAME = "words.txt"
 
 def load_words():
-    """
-    Returns a list of valid words. Words are strings of lowercase letters.
-    
-    Depending on the size of the word list, this function may
-    take a while to finish.
-    """
     print("Loading word list from file...")
     # inFile: file
     inFile = open(WORDLIST_FILENAME, 'r')
@@ -33,21 +17,9 @@ def load_words():
 
 
 def choose_word(wordlist):
-    """
-    wordlist (list): list of words (strings)
-    
-    Returns a word from wordlist at random
-    """
     return random.choice(wordlist)
 
-# end of helper code
-
-# -----------------------------------
-
-# Load the list of words into the variable wordlist
-# so that it can be accessed from anywhere in the program
 wordlist = load_words()
-
 
 def is_word_guessed(secret_word, letters_guessed):
     return all(elem in letters_guessed for elem in secret_word)
@@ -82,11 +54,11 @@ def hangman(secret_word):
         print('\nChoose 1 letter from available ones')
         letter = input('Your choice: ').lower()
         while letter not in [*string.ascii_lowercase] or letter in letters_guessed:
-            if guesses_left == 1:
-                guesses_left -= 1
-                break
             if letter in letters_guessed:
                 print("You've already choosed this letter, try another one")
+            elif guesses_left == 1:
+                guesses_left -= 1
+                break
             elif attempts >= 1 and letter not in [*string.ascii_lowercase]:
                     attempts -= 1
                     print(f'\nIncorrect character, try again')
@@ -145,11 +117,11 @@ def hangman_with_hints(secret_word):
         print('-'*30)
         letter = input('Your choice: ').lower()
         while letter not in [*string.ascii_lowercase,'*'] or letter in letters_guessed:
-            if guesses_left == 1:
-                guesses_left -= 1
-                break
             if letter in letters_guessed:
                 print("You've already choosed this letter, try another one")
+            elif guesses_left == 1:
+                guesses_left -= 1
+                break
             elif attempts >= 1 and letter not in [*string.ascii_lowercase]:
                     attempts -= 1
                     print(f'\nIncorrect character, try again')
@@ -190,7 +162,8 @@ if __name__ == "__main__":
     print('Choose the version of the game:')
     print('1 - classic hangman')
     print('2 - hangman with hints')
-    secret_word = choose_word(wordlist)
+    # secret_word = choose_word(wordlist)
+    secret_word = 'streamline'
     print('-'*30)
     choice = int(input())
     print('-'*30)
