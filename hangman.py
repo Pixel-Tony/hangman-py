@@ -72,7 +72,6 @@ def hangman(secret_word):
     guesses_left = 6
     attempts = 3
     letters_guessed = []
-    vowels = ['a','e','i','o','u']
     print('\nHangman the game!!')
     print(f'Current word length is {len(secret_word)}')
     while not is_word_guessed(secret_word,letters_guessed) and guesses_left != 0:
@@ -92,15 +91,14 @@ def hangman(secret_word):
                     attempts -= 1
                     print(f'\nIncorrect character, try again')
                     print('you have {0} more attempts to choose a correct one without losing a guess'.format(attempts if attempts in [1,2] else 'no'))
+            elif letter in ['a','e','i','o','u']:
+                if guesses_left > 1: 
+                    guesses_left -= 2
+                else: 
+                    guesses_left = 0
+                    break
             else:
-                if letter in vowels:
-                    if guesses_left > 1:
-                        guesses_left -= 2
-                    else:
-                        guesses_left = 0
-                        break
-                else:
-                    guesses_left -= 1
+                guesses_left -= 1
                 print("\nIncorrect character, try again")
                 print(f"You have {guesses_left} guesses left")
             print('-'*30)
@@ -112,7 +110,7 @@ def hangman(secret_word):
                 print('\nThe letter is in the word!')
             else:
                 print("\nThe letter isn't in the word")
-                guesses_left = guesses_left - 2 if letter in vowels else guesses_left - 1
+                guesses_left = guesses_left - 2 if letter in ['a','e','i','o','u'] else guesses_left - 1
             letters_guessed += letter
     if guesses_left == 0:
         print(f'You lost the game, the word was {secret_word}')
@@ -156,6 +154,12 @@ def hangman_with_hints(secret_word):
                     attempts -= 1
                     print(f'\nIncorrect character, try again')
                     print('you have {0} more attempts to choose a correct one without losing a guess'.format(attempts if attempts in [1,2] else 'no'))
+            elif letter in ['a','e','i','o','u']:
+                if guesses_left > 1: 
+                    guesses_left -= 2
+                else: 
+                    guesses_left = 0
+                    break
             else:
                 guesses_left -= 1
                 print("\nIncorrect character, try again")
@@ -173,7 +177,7 @@ def hangman_with_hints(secret_word):
                 letters_guessed += letter
             else:
                 print("The letter isn't in the word")
-                guesses_left = guesses_left - 2 if letter in vowels else guesses_left - 1
+                guesses_left = guesses_left - 2 if letter in ['a','e','i','o','u'] else guesses_left - 1
                 letters_guessed += letter
     if guesses_left == 0:
         print(f'You lost the game, the word was: {secret_word.upper()}')
@@ -182,7 +186,6 @@ def hangman_with_hints(secret_word):
         print(f'Your final score is {(guesses_left)*len(set(secret_word))}')
 
 if __name__ == "__main__":
-    # pass
     print('-'*30)
     print('Choose the version of the game:')
     print('1 - classic hangman')
