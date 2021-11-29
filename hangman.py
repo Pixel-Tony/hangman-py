@@ -162,8 +162,7 @@ if __name__ == "__main__":
     print('Choose the version of the game:')
     print('1 - classic hangman')
     print('2 - hangman with hints')
-    # secret_word = choose_word(wordlist)
-    secret_word = 'streamline'
+    secret_word = choose_word(wordlist)
     print('-'*30)
     choice = int(input())
     print('-'*30)
